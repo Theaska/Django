@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+{% if post_list %}
+    {% for post in post_list %}
+            <a href="{% url 'myblog:post' post.id %}">
+                <h1> {{ post.title }}  </h1> 
+            </a>
+            <p> {{ post.text | truncatewords:10 }} </p>
+            <p align="right"> {{ post.date_publish }} </p> 
+            <hr>
+    {% endfor %}
+{% else %}
+    <p> There are no posts in the blog. </p>
+{% endif %}
+{% endblock %}

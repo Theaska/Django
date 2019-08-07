@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if post %}
+            <h1> {{ post.title }}  </h1> 
+            <p> {{ post.text }} </p>
+            <p> Authors:
+            {% for author in post.authors.all %}
+                <li>{{ author.nickname|linebreaksbr|striptags }}</li>
+            </p> 
+            {% endfor %}
+            <i> {{ post.date_publish }} </i>
+    {% endif %}
+{% endblock content %}

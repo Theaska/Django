@@ -3,7 +3,10 @@ from django.urls import path, include
 from django.conf.urls import url
 from . import views
 
+app_name = "myblog"
 urlpatterns = [
-    url(r'^view1/', views.view1, name='view1'),
-    path('view2/', views.view2, name='view2'),
+    path('', views.index, name='index'),
+    path('post/<int:post_id>', views.post, name='post'),
+    url(r'^(?P<blog_tag>[A-Za-z0-9-]+)$', views.blog, name='blog'),
+    url(r'^archive/(?P<month>[A-Za-z]+)$', views.archive, name='archive')
 ]

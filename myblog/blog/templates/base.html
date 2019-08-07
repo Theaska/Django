@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block header %}
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %} My Blog {% endblock %} </title>
+    <link href="{% static 'css/mystyle.css' %}" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css?family=Patua+One|Courgette|Darker+Grotesque|Lobster|Abel|Comfortaa&display=swap" rel="stylesheet">
+    <div id = 'header'>
+        <a href="{% url 'myblog:index' %}"> <h1> My Blog </h1> </a>
+    </div>
+</head>
+{% endblock %}
+<body>
+<div id='sidebar'>
+    {% block sidebarLeft%}
+    {% if tg_bl %}
+        {% for tg in tg_bl %}
+            <a href = "{% url 'myblog:blog' tg.tagline %}">
+                <h1>{{ tg.tagline | lower }}</h1>
+            </a>
+        {% endfor %}
+    {% endif %}
+    {% endblock %}
+</div>
+<div id='content'>
+    {% block content %}{% endblock %}
+</div>
+<div id='sidebarRight'>
+    {% block sidebarRight %}
+    {% for m in months %}
+        <a href="{% url 'myblog:archive' m%}">
+            <h1>{{ m }}</h1>
+        </a>
+    {% endfor %}
+    {% endblock %}
+</div>
+</body>
+</html>
