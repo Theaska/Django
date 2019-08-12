@@ -10,4 +10,19 @@
             {% endfor %}
             <i> {{ post.date_publish }} </i>
     {% endif %}
+    <hr>
+    {% for comment in comments %}
+        <h3> {{ comment.author_nickname }}  : {{ comment }} </h3> [ {{ comment.date_publish }} ]
+        <hr>
+    {% endfor %}
+    {% if form %}
+        <form method="POST" action = "{% url 'myblog:post' post_id=post.id %}"class="post-form">{% csrf_token %}
+        <div id='textarea'>
+        {{ form.as_p }}
+        </div>
+        <button type="submit" class="post-form">Save comment</button>
+        </form>
+    {% else %}
+        <h2> Comments only for authorized users </h2>
+    {% endif %}
 {% endblock content %}

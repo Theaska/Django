@@ -2,15 +2,27 @@ body {
     margin: 0;
     background: rgba(92, 204, 204, 0.521);
     }
+#textarea {
+    resize: none;
+}
 #sidebar, #content { position: absolute; } 
 #sidebar, #content { padding: 5px; }
 #header {
+    padding: 0.2px;
     height: 80px; /* Высота слоя */ 
     background: #006363;
     border-bottom: 3px solid #5CCCCC;
 }
-#header a, #content a{
+#sidebarRight p, #header p{
+    padding: 10px; 
+    color: rgb(255, 174, 0); 
+    font-family: 'Comfortaa', cursive;
+    text-align: right;
+    font-size: 20px;
+}
+#header a, #content a, #sidebarRight a{
     text-decoration: none;
+    color: rgb(255, 174, 0);
 }
 #sidebarRight { 
     width: 120px; 
@@ -30,13 +42,25 @@ body {
     text-align: left;
     font-size: 15px;
 }
+
 #header h1 { padding: 20px; 
         margin: 0; 
         color: #FF7400; 
         font-family: 'Lobster', cursive; 
         font-size: 40px;
-        text-align: left; 
+        display: inline-block; 
+        float: left;
 }
+
+#header h2 { padding: 1px; 
+    margin: 0; 
+    color: #FF7400; 
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 20px;
+    display: inline-block; 
+    float: right;
+}
+
 #sidebar { 
     width: 120px; 
     background: #1D7373; 

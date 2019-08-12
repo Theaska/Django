@@ -1,4 +1,5 @@
 {% load static %}
+{% load my_filters %}
 <!DOCTYPE html>
 <html lang="en">
 {% block header %}
@@ -9,27 +10,33 @@
     <link href="https://fonts.googleapis.com/css?family=Patua+One|Courgette|Darker+Grotesque|Lobster|Abel|Comfortaa&display=swap" rel="stylesheet">
     <div id = 'header'>
         <a href="{% url 'myblog:index' %}"> <h1> My Blog </h1> </a>
+        {% block menu %}
+            {% if user.is_authenticated %}
+            <h2> Welcome {{ user.username }} </h2> <a href="{% url 'users:logout' %}">  <p> Log out  </a> </p>
+                {% else %}
+                <p>  <a href="{% url 'users:signup' %}"> Sign Up </a> <a href="{% url 'users:login' %}"> Log In </a> </p>
+            {% endif %}
+        {% endblock menu %}
     </div>
 </head>
 {% endblock %}
 <body>
 <div id='sidebar'>
     {% block sidebarLeft%}
-    {% if tg_bl %}
-        {% for tg in tg_bl %}
-            <a href = "{% url 'myblog:blog' tg.tagline %}">
-                <h1>{{ tg.tagline | lower }}</h1>
-            </a>
-        {% endfor %}
-    {% endif %}
+    {% for tg in tg_bl|get_blogs_tags %}
+        <a href = "{% url 'myblog:blog' tg.tagline %}">
+            <h1>{{ tg.tagline | lower }}</h1>
+        </a>
+    {% endfor %}
     {% endblock %}
 </div>
 <div id='content'>
     {% block content %}{% endblock %}
 </div>
 <div id='sidebarRight'>
-    {% block sidebarRight %}
-    {% for m in months %}
+
+    {% block sidebarRight %}  
+    {% for m in monsts|months_list %}
         <a href="{% url 'myblog:archive' m%}">
             <h1>{{ m }}</h1>
         </a>

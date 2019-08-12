@@ -5,8 +5,8 @@ from . import views
 
 app_name = "myblog"
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('post/<int:post_id>', views.post, name='post'),
-    url(r'^(?P<blog_tag>[A-Za-z0-9-]+)$', views.blog, name='blog'),
-    url(r'^archive/(?P<month>[A-Za-z]+)$', views.archive, name='archive')
+    path('', views.IndexView.as_view(), name='index'),
+    path('post/<int:post_id>', views.PostView.as_view(), name='post'),
+    path('blog/tagline=<slug:tagline>', views.BlogView.as_view(), name='blog'),
+    path('archive/<str:month>', views.MonthArchive.as_view(), name='archive')
 ]
