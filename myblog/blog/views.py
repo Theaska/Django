@@ -30,7 +30,7 @@ class PostView(generic.DetailView):
         context['user'] = request.user
         if user.is_authenticated:
             context['form'] = self.comment_form
-        return render_to_response(template_name=self.template_name, context=context)
+        return render(request, self.template_name, context)
     
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
