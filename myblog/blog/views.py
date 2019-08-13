@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from .models import Post, Blog, Author
 from django.shortcuts import reverse, render, get_object_or_404, render_to_response, redirect
 from django.views import generic
