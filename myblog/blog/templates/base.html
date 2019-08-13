@@ -34,14 +34,8 @@
     {% block content %}{% endblock %}
 </div>
 <div id='sidebarRight'>
-<<<<<<< HEAD
-
     {% block sidebarRight %}  
     {% for m in monsts|months_list %}
-=======
-    {% block sidebarRight %}
-    {% for m in months|monthList %}
->>>>>>> 0e9f77b6729c82fdbf00e9cc44ebc3e3f0005958
         <a href="{% url 'myblog:archive' m%}">
             <h1>{{ m }}</h1>
         </a>
