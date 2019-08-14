@@ -65,8 +65,6 @@ INSTALLED_APPS = [
 ]
 LOGIN_REDIRECT_URL = 'myblog:index'
 LOGOUT_REDIRECT_URL = 'myblog:index'
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "users:login"
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "users:login"
 ACCOUNT_FORMS = {
     'login': 'users.forms.MyLoginForm',
     'signup': 'users.forms.MySignupForm',

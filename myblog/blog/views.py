@@ -7,12 +7,15 @@ from django.template.context_processors import csrf
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.utils import timezone
+
 
 class IndexView(generic.ListView):
     template_name = 'blog/index.html'
     context_object_name = 'post_list' 
     def get_queryset(self):
-        return Post.objects.order_by('-date_publish')[:10]
+        return Post.objects.filter(date_publish__lte=(timezone.now()+datetime.timedelta(days=1))
+                                    ).order_by('-date_publish')[:10]
 
 class PostView(generic.DetailView):
     model = Post
@@ -58,5 +61,9 @@ class MonthArchive(generic.MonthArchiveView):
     month_format = '%B'
     year = datetime.datetime.now().year
     def get_allow_empty(self):
+<<<<<<< HEAD
+        return True
+=======
         return True
 
+>>>>>>> 0f56dc1c30841dfcad67b31ff696b590d77120dc

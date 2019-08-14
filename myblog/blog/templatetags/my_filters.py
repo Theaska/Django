@@ -12,4 +12,8 @@ def months_list(value):
 @register.filter(name='get_blogs_tags')
 def get_blogs_tags(value):
         value = Blog.objects.values('tagline')
+<<<<<<< HEAD
         return value
+=======
+        return value
+>>>>>>> 0f56dc1c30841dfcad67b31ff696b590d77120dc

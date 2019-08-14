@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import MySignUp, MyLoginView, logout_view
 from django.conf import settings
+from django.views.generic.base import TemplateView
 
 app_name = "users"
 urlpatterns = [
