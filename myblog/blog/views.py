@@ -61,9 +61,4 @@ class MonthArchive(generic.MonthArchiveView):
     month_format = '%B'
     year = datetime.datetime.now().year
     def get_allow_empty(self):
-<<<<<<< HEAD
         return True
-=======
-        return True
-
->>>>>>> 0f56dc1c30841dfcad67b31ff696b590d77120dc

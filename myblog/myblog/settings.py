@@ -25,7 +25,10 @@ SECRET_KEY = 'h0q@uf!ytv%2ih!hb%6cq@c*d1&^(h3lga*lhs=n(_2l1_#i$i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'theaska-blog.herokuapp.com',
+    '127.0.0.1',
+    ]
 #Метод аутентификации для django_allauth
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 #Подтверждение по email
@@ -162,3 +165,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
