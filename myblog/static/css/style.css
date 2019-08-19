@@ -1,0 +1,143 @@
+/*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Patua+One|Courgette|Darker+Grotesque|Lobster|Abel|Comfortaa&display=swap";
+body {
+    font-family: 'Abel', cursive;
+    background: #DFEFE6;
+}
+
+p {
+    font-family: 'Abel', cursive;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: rgb(47, 75, 61);
+}
+h1 {
+    font-family: 'Abel', cursive;
+    font-size: 3em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: rgb(47, 75, 61);
+}
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.navbar {
+    background: #4DA89B;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+.nav-link,
+.navbar-brand {
+    color: #DFEFE6;
+    cursor: pointer;
+    }
+.navbar-brand {
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+}
+.nav-link {
+    margin-right: 1em !important;
+    font-family: 'Comfortaa', cursive;
+    }
+.navbar-brand:hover,
+.nav-link:hover {
+    color: rgb(23, 58, 38);
+    }
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #4DA89B;
+    color: #DFEFE6;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #4DA89B;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #4DA89B;
+}
+
+#sidebar ul p {
+    color: #DFEFE6;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #4DA89B;
+    background: #DFEFE6;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+#content h2 {
+    color: #518A6E;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
