@@ -1,46 +1,106 @@
+<!DOCTYPE html>
 {% load static %}
 {% load my_filters %}
-<!DOCTYPE html>
 <html lang="en">
-{% block header %}
-<head>
-    <meta charset="UTF-8">
-    <title> {% block title %} My Blog {% endblock %} </title>
-    <link href="{% static 'css/mystyle.css' %}" rel="stylesheet">  
-    <link href="https://fonts.googleapis.com/css?family=Patua+One|Courgette|Darker+Grotesque|Lobster|Abel|Comfortaa&display=swap" rel="stylesheet">
-    <div id = 'header'>
-        <a href="{% url 'myblog:index' %}"> <h1> My Blog </h1> </a>
-        {% block menu %}
+
+  <head>
+    {% block title %}
+        <title>Theaska Blog</title>
+    {% endblock title %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  </head>
+
+
+<body> 
+    <!-- Slidebar -->
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Blog menu</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#blogSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">All blogs</a>
+                    <ul class="collapse list-unstyled" id="blogSubmenu">
+
+                            {% for tg in tg_bl|get_blogs_tags %}
+                            <li>
+                                <a href = "{% url 'myblog:blog' tg.tagline %}">
+                                    {{ tg.tagline | lower }}
+                                </a>
+                            </li>
+                            {% endfor %}
+
+                    </ul>
+                </li>
+                <ul class="list-unstyled components">
+                    <li class="active">
+                    <a href="#archiveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Month archive</a>
+                    <ul class="collapse list-unstyled" id="archiveSubmenu">
+                    {% for m in monsts|months_list %}
+                        <a href="{% url 'myblog:archive' m%}">
+                            {{ m }}
+                        </a>
+                    {% endfor %}
+
+                <li>
+                    <a href="#">About</a>
+                </li>
+
+            </ul>
+        </nav>
+    <!-- Page Content  -->
+        <div id="content">
+        <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="{% url 'myblog:index'%}">Theaska Blog</a>
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn">
+                    Menu 
+                </button>
+            </div>
+            
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav">
             {% if user.is_authenticated %}
-            <h2> Welcome, {{ user.username }} </h2> <a href="{% url 'users:logout' %}">  <p> Log out  </a> </p>
-                {% else %}
-                <p>  <a href="{% url 'users:signup' %}"> Sign Up </a> <a href="{% url 'users:login' %}"> Log In </a> </p>
+                <li class="nav-item">
+                    <p class="nav-link"> Welcome, {{ user.username }} </p> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:logout' %}">  Logout  </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:signup' %}"> SignUp </a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"href="{% url 'users:login' %}"> LogIn </a>
+                </li>
             {% endif %}
-        {% endblock menu %}
-    </div>
-</head>
-{% endblock %}
-<body>
-<div id='sidebar'>
-    {% block sidebarLeft%}
-    {% for tg in tg_bl|get_blogs_tags %}
-        <a href = "{% url 'myblog:blog' tg.tagline %}">
-            <h1>{{ tg.tagline | lower }}</h1>
-        </a>
-    {% endfor %}
-    {% endblock %}
-</div>
-<div id='content'>
-    {% block content %}{% endblock %}
-</div>
-<div id='sidebarRight'>
-    {% block sidebarRight %}  
-    {% for m in monsts|months_list %}
-        <a href="{% url 'myblog:archive' m%}">
-            <h1>{{ m }}</h1>
-        </a>
-    {% endfor %}
-    {% endblock %}
-</div>
+            </ul>
+        </div>
+        </nav>
+        {% block content %}
+        {% endblock content %}
+        </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
 </body>
 </html>

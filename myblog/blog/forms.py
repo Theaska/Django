@@ -9,6 +9,6 @@ class FormComment(forms.ModelForm):
             'text': "Comment"
         }
         widgets = {
-            'text': forms.Textarea(attrs={'cols': 80, 'rows': 20}),
+            'text': forms.Textarea(attrs={'cols': 50, 'rows': 5}),
         }
 

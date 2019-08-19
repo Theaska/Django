@@ -24,7 +24,7 @@ class Author(models.Model):
 class Post(models.Model):
     authors = models.ManyToManyField(Author)
     title = models.CharField(max_length=100)
-    text = models.CharField(max_length=400)
+    text = models.TextField()
     date_publish = models.DateField()
     in_blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
 
@@ -34,7 +34,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     author_nickname = models.CharField(max_length=100, blank=False, default=None)
-    text = models.CharField(max_length=200)
+    text = models.TextField()
     date_publish = models.DateTimeField()
     in_post = models.ForeignKey(Post, on_delete=models.CASCADE)
     
